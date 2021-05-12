@@ -1,0 +1,8 @@
+.card{
+    background-color: rgb(46, 46, 46);
+}
+
+#tamCanvas{
+    width: 700px;
+    height: 700px;
+}

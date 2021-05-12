@@ -1,0 +1,21 @@
+<mat-card class="card">
+  <mat-card-title>Minhas contas</mat-card-title>
+  <mat-form-field appearance="fill">
+    <mat-label>Select me</mat-label>
+    <mat-select>
+      <mat-option *ngFor='let m of meses' (click)='show(m)'>{{m}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+<ul>
+  <li *ngFor="let c of d">{{c.valor}}</li>
+</ul>
+<ul>
+  <li *ngFor="let cc of r">{{cc.valor}}</li>
+</ul>
+
+<!--<p *ngIf='somaDespesas < 0 || somaReceitas > 0'>{{somaDespesas}} --- {{somaReceitas}}</p> -->
+
+<div id="tamCanvas">
+  <canvas id="meuCanvas"></canvas>
+</div>

@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title>Nova receita</mat-card-title>
+        <form>
+            <input type="text" placeholder="Tipo de receita" [(ngModel)]='receita.conta' name="conta">
+            <input type="text" placeholder="Descrição" [(ngModel)]='receita.descricao' name="descricao">
+            <input type="date" placeholder="Data" [(ngModel)]='receita.data' name="data">
+            <input type="number" placeholder="Valor" [(ngModel)]='receita.valor' name="valor">
+
+            <input type="button" Value="Salvar conta" (click)='salvarReceita()' class="button mat-elevation-z3" routerLink="/">
+        </form>
+</mat-card>

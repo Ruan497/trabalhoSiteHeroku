@@ -1,0 +1,22 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav class="nav" mode="side" opened fixedInViewport='true' fixedTopGap='64'>
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="/">
+                Cadastrar despesa
+            </a>
+            <a mat-list-item routerLink="income">
+                Cadastrar receita
+            </a>
+
+            <a mat-list-item routerLink="/accounts">
+                Minhas contas
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+        
+    </mat-sidenav-content>
+    
+</mat-sidenav-container>

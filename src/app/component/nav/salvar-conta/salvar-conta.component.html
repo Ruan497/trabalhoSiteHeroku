@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title>Nova despesa</mat-card-title>
+        <form>
+            <input type="text" placeholder="Tipo de conta" [(ngModel)]='cont.conta' name="conta">
+            <input type="text" placeholder="Descrição" [(ngModel)]='cont.descricao' name="descricao">
+            <input type="date" placeholder="Data" [(ngModel)]='cont.data' name="data">
+            <input type="number" placeholder="Valor" [(ngModel)]='cont.valor' name="valor">
+
+            <input type="button" Value="Salvar conta" (click)='salvar()' class="button mat-elevation-z3">
+        </form>
+</mat-card>
