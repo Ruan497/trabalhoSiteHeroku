@@ -11,85 +11,88 @@ export class ContaReceitaService {
 
   cts: Conta[] = []
   rcs: Conta[] = []
-  meses: string[] = []
+  anos: string[] = []
 
-  /*salvarC(conta: Conta){
-      this.cts.push(conta)   
-      this.mes(conta)
-      this.salvarCLs()
-  }
-  SalvarR(conta: Conta){
-    this.rcs.push(conta)
-    this.mes(conta)
 
-  }*/
-
+  //salva conta(despesa) no localStorage
   salvarCLs(conta: Conta) {
     this.rec()
-    this.mes(conta)
+    this.ano(conta)
     this.cts.push(conta)
     const dt = JSON.stringify(this.cts)
     localStorage.setItem('cts', dt)
   }
+
+  //salva receita no localStorage
   salvarRLs(receita: Conta) {
     this.rec()
-    this.mes(receita)
+    this.ano(receita)
     this.rcs.push(receita)
     const dt = JSON.stringify(this.rcs)
     localStorage.setItem('rcs', dt)
   }
 
+  //pega os dados do local storage e armazena nas listas cts(despesas) e/ou rcs(receitas)
   rec() {
     if (localStorage.getItem('cts')) {
       this.cts = JSON.parse(localStorage.getItem('cts') || '{}')
-      //console.log(this.cts)
+    
     } else {
       this.cts = []
     }
 
     if (localStorage.getItem('rcs')) {
       this.rcs = JSON.parse(localStorage.getItem('rcs') || '{}')
-      //console.log(this.rcs)
+
     } else {
       this.rcs = []
     }
   }
 
-  mes(conta: Conta) {
-    this.recMeses()
-    let mes = conta.data.slice(0, 4)
-    if(this.meses.includes(mes)){
-      alert('nova conta para o ano ' + mes)
+  //pega o ano da data e armazena no localStorage
+  ano(conta: Conta) {
+    this.recAnos()
+    let ano = conta.data.slice(0, 4)
+    if(this.anos.includes(ano)){
+      alert('nova conta para o ano ' + ano)
     } else{
-      alert('primeira conta do ano de ' + mes)
-      this.meses.push(mes)
-      const y = JSON.stringify(this.meses)
+      alert('primeira conta do ano de ' + ano)
+      this.anos.push(ano)
+      const y = JSON.stringify(this.anos)
       localStorage.setItem('year', y)
     }
 
   }
-  recMeses() {
+
+
+  //pega os dados do localStorage e armazena na lista anos
+  recAnos() {
     if (localStorage.getItem('year')) {
-      this.meses = JSON.parse(localStorage.getItem('year') || '[]')
+      this.anos = JSON.parse(localStorage.getItem('year') || '[]')
     } else {
-      this.meses = []
+      this.anos = []
     }
   }
 
-  
-  filt(m: string) {
-    for (let i = 0; i < this.cts.length; i++) {
-      console.log(this.cts[i].data)
 
-      if (this.cts[i].data.slice(0, 4) !== m) {
+  //filtra a lista, removendo objetos cujo ano não sejam iguais ao passado como parâmetro
+  filt(a: string) {
+    for (let i = 0; i < this.cts.length;) {
+      if (this.cts[i].data.slice(0, 4) !== a) {
         this.cts.splice(i, 1)
+      } else {
+        i++
       }
+
     }
+
     
-    for (let i = 0; i < this.rcs.length; i++) {
+    for (let i = 0; i < this.rcs.length;) {
       
-      if (this.rcs[i].data.slice(0, 4) !== m) {
+      if (this.rcs[i].data.slice(0, 4) !== a) {
         this.rcs.splice(i, 1)
+      } else {
+        i++
       }
     }
 

@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.contaReceita.rec()
-    this.contaReceita.recMeses()
+    this.contaReceita.recAnos()
   }
 
 }

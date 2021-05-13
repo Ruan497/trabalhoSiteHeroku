@@ -11,7 +11,7 @@ import { Chart } from 'chart.js'
   styleUrls: ['./ver-contas.component.css']
 })
 export class VerContasComponent implements OnInit {
-  meses: string[]
+  anos: string[]
   d: Conta[]
   r: Conta[]
   somaDespesas: number = 0
@@ -21,22 +21,20 @@ export class VerContasComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.contaReceita.recMeses()
-    this.meses = this.contaReceita.meses
+    this.contaReceita.recAnos()
+    this.anos = this.contaReceita.anos
 
-      }
-    
+  }
 
-  show(m: string) {
+
+  show(a: string) {
     this.contaReceita.rec()
-    this.contaReceita.filt(m)
+    this.contaReceita.filt(a)
+    console.log(a)
     this.d = this.contaReceita.cts
     this.r = this.contaReceita.rcs
     this.sum()
     this.grafico()
-    console.log(this.d)
-    console.log(this.r)
-  
 
   }
 
@@ -45,48 +43,48 @@ export class VerContasComponent implements OnInit {
     this.somaReceitas = 0
     for (let i = 0; i < this.d.length; i++) {
       this.somaDespesas += this.d[i].valor
-      console.log(i)
+
     }
 
     for (let i = 0; i < this.r.length; i++) {
       this.somaReceitas += this.r[i].valor
-      console.log(i)
+
     }
 
-  
+
   }
 
   grafico() {
     var chart = new Chart('meuCanvas', {
       type: 'pie',
-      data:{
-        labels:["Despesas: " + this.somaDespesas , "Receitas: " + this.somaReceitas],
-        datasets:[{
+      data: {
+        labels: ["Despesas: " + this.somaDespesas, "Receitas: " + this.somaReceitas],
+        datasets: [{
           label: "Vote Now",
-          data:[this.somaDespesas, this.somaReceitas],
-          backgroundColor:[
+          data: [this.somaDespesas, this.somaReceitas],
+          backgroundColor: [
             'rgb(185, 6, 6)',
             'rgb(3, 129, 20)',
           ]
         }]
       },
-      options:{
-        title:{
-          text:"Bar Chart",
-          display:true
+      options: {
+        title: {
+          text: "Relação despesa-receita",
+          display: true
         },
 
         scales: {
-          yAxes:[{
-            ticks:{
-              beginAtZero:true
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
             }
-              }]
-            }
-          }
-        })
-    
+          }]
+        }
+      }
+    })
+
   }
-    
+
 
 }
